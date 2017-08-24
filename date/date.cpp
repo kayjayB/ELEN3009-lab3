@@ -4,10 +4,25 @@
 #include "date.h"
 
 Date::Date(int days, Month months, int years):
-_day{days},
-_month{months},
-_year{years}
-{ }
+	_day{days},
+	_month{months},
+	_year{years}
+{ 
+	if (_day<1) // if day is less than 1, throw an exception
+	{
+		throw InvalidDay();
+	}
+	
+	if (_day > daysInMonth()) // if day is more than the days in the month, throw an exception
+	{
+		throw InvalidDay();
+	}
+		if (_year < 0) // if year is negative, throw an exception
+	{
+		throw InvalidYear();
+	}
+	
+}
 
 int Date::day() const
 {

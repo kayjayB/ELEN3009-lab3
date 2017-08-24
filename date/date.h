@@ -7,6 +7,10 @@
 #include <iostream>
 using namespace std;
 
+class InvalidDay{};
+class InvalidMonth{};
+class InvalidYear{};
+
 enum class Month 
 {
 	January = 1, 
@@ -30,7 +34,7 @@ public:
 	// constructor
 	Date(int days, Month months, int years);
 	// return the day of the month
-	int	day () const;
+	int day () const;
 	// return the month of the year
 	Month month () const;
 	// return the year
