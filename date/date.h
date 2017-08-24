@@ -31,6 +31,7 @@ class Date
 {
 public:	
 
+	Date();
 	// constructor
 	Date(int days, Month months, int years);
 	// return the day of the month
@@ -43,13 +44,15 @@ public:
 	bool isLeapYear () const;	
 	bool operator==(const Date& rhs) const;
 	void incrementDay();
+	static void setDefaultDate(int day, Month month, int year);
 
 private:
 	// return the number of days in the _month
-	int	daysInMonth () const;	
+	int	daysInMonth() const;	
 	int	_day;
 	Month _month;
 	int	_year;
+	static Date _default;
 
 };
 

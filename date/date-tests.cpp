@@ -93,3 +93,24 @@ TEST_CASE("Year is incremented if days overflow ") {
 // Exercise 2.5
 // Write tests for the new default constructor and the
 // setDefaultDate method.
+TEST_CASE("Check default constructor ") {
+	Date date_1;
+	Date date_2(1, Month::January, 1900);
+	CHECK(date_1==date_2);
+}
+
+TEST_CASE("Check that the default date is changed by the set default function") {
+	Date::setDefaultDate(1, Month:: October, 1994);
+	Date date_1;
+	Date date_2(1, Month:: October, 1994);
+	CHECK(date_1==date_2);
+}
+	
+	TEST_CASE("Check that the default date is changed for all objects") {
+	Date::setDefaultDate(1, Month:: October, 1994);
+	Date date_1;
+	Date date_2;
+	Date date_3(1, Month:: October, 1994);
+	CHECK(date_1==date_3);
+	CHECK(date_2==date_3);
+}
