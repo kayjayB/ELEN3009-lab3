@@ -35,7 +35,6 @@ TEST_CASE("Date is invalid ") {
 	CHECK_THROWS_AS(Date heritage_day(12, Month::February, -2000), InvalidYear);
 }
 
-
 // Exercise 2.3
 TEST_CASE("Identical Dates are Equal") {
     Date date_1(1, Month::January, 2000);
@@ -52,15 +51,44 @@ TEST_CASE("Identical Dates are Equal") {
 	CHECK_FALSE(date_4 == date_5);
 }
 
-// Supply at least three additional tests for
-// the equality operator here, to ensure that
-// it is working correctly.
-
-
 // Exercise 2.4
 // Provide tests for a new member function of the Date class
 // which will increase the date by one day.
+TEST_CASE("Day can be incremented by 1") {
+	Date date_1(1, Month::January, 2000);
+	date_1.incrementDay();
+	CHECK(date_1.day() == 2);
+	CHECK(date_1.month() == Month::January);
+	CHECK(date_1.year() == 2000);
+}
 
+TEST_CASE("Month is incremented if days overflow ") {
+	Date date_1(31, Month::January, 2000);
+	date_1.incrementDay();
+	CHECK(date_1.day() == 1);
+	CHECK(date_1.month() == Month::February);
+	CHECK(date_1.year() == 2000);
+	
+	Date date_2(28, Month:: February, 2016);
+	date_2.incrementDay();
+	CHECK(date_2.day() == 29);
+	CHECK(date_2.month() == Month::February);
+	CHECK(date_2.year() == 2016);
+	
+	Date date_3(28, Month:: February, 2017);
+	date_3.incrementDay();
+	CHECK(date_3.day() == 1);
+	CHECK(date_3.month() == Month::March);
+	CHECK(date_3.year() == 2017);
+}
+
+TEST_CASE("Year is incremented if days overflow ") {
+	Date date_1(31, Month::December, 2000);
+	date_1.incrementDay();
+	CHECK(date_1.day() == 1);
+	CHECK(date_1.month() == Month::January);
+	CHECK(date_1.year() == 2001);
+}
 
 // Exercise 2.5
 // Write tests for the new default constructor and the

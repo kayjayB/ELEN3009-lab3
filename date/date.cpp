@@ -83,6 +83,28 @@ bool Date::operator==(const Date& rhs) const
 	return false;
 }
 
+void Date::incrementDay()
+{
+	_day++;
+	if (_day > daysInMonth())
+	{
+		auto monthNumber =static_cast<int>(_month);
+		
+		monthNumber=monthNumber % 12;
+		
+		if (monthNumber==0)
+		{
+			_year++;
+		}
+			
+		monthNumber++;
+		
+		_month=static_cast<Month>(monthNumber);
+		_day=1;
+		
+	}  
+}
+
 // Note, this standalone function is not part of the Date class
 void printDate(const Date& date)
 {
